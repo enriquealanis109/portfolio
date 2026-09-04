@@ -11,6 +11,7 @@ export interface Project {
   status: ProjectStatus
   image: string
   brandColor: string
+  caseStudySlug?: string
 }
 
 export const projects: Project[] = [
@@ -27,10 +28,11 @@ export const projects: Project[] = [
       es: 'Plataforma multi-rol para academia de fútbol. Admin, entrenadores y coordinadores con pase de lista, reportes PDF, analytics y PWA. 10+ usuarios activos en producción.',
     },
     stack: ['Next.js 14', 'TypeScript', 'Supabase', 'Tailwind CSS'],
-    url: 'https://panteras-app.vercel.app',
+    url: 'https://panteras-saltillo.vercel.app',
     status: 'live',
     image: '/panteras.png',
     brandColor: '#00C853',
+    caseStudySlug: 'panteras',
   },
   {
     id: 'stage11',
@@ -49,10 +51,30 @@ export const projects: Project[] = [
     status: 'live',
     image: '/stage11.png',
     brandColor: '#8B5CF6',
+    caseStudySlug: 'stage11',
+  },
+  {
+    id: 'edutrack',
+    number: '03',
+    name: 'EduTrack',
+    tagline: {
+      en: 'Multi-tenant school management SaaS',
+      es: 'SaaS multi-tenant de gestión escolar',
+    },
+    description: {
+      en: 'Attendance, weighted grading rubrics, and PDF report cards for teachers. Built multi-tenant from day one — RLS-isolated per teacher — so onboarding the next school requires zero rebuild. Live pilot with a real teacher, installable as a PWA.',
+      es: 'Asistencia, rúbricas de calificación ponderadas y boletas en PDF para maestros. Construido multi-tenant desde el día 1 — aislado por RLS por maestro — para incorporar la siguiente escuela sin reconstruir nada. Piloto real en producción, instalable como PWA.',
+    },
+    stack: ['Next.js 14', 'TypeScript', 'Supabase', 'PWA'],
+    url: 'https://escuela-app-eta.vercel.app',
+    status: 'live',
+    image: '/edutrack.png',
+    brandColor: '#F59E0B',
+    caseStudySlug: 'edutrack',
   },
   {
     id: 'tornea',
-    number: '03',
+    number: '04',
     name: 'Tornea',
     tagline: {
       en: 'Sports tournament SaaS',
@@ -67,10 +89,11 @@ export const projects: Project[] = [
     status: 'wip',
     image: '/tornea.png',
     brandColor: '#0066FF',
+    caseStudySlug: 'tornea',
   },
   {
     id: 'flowra',
-    number: '04',
+    number: '05',
     name: 'Flowra',
     tagline: {
       en: 'My digital agency',
@@ -85,5 +108,6 @@ export const projects: Project[] = [
     status: 'agency',
     image: '/flowra.png',
     brandColor: '#06B6D4',
+    caseStudySlug: 'flowra',
   },
 ]

@@ -1,14 +1,16 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Mail } from 'lucide-react'
+import { ArrowRight, Mail, FileDown } from 'lucide-react'
+import { track } from '@vercel/analytics'
 import { useLang } from '@/contexts/LanguageContext'
 import { content } from '@/lib/content'
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
+  initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: 'easeOut' as const, delay },
+  transition: { duration: 0.5, ease: 'easeOut' as const, delay },
+  style: { willChange: 'opacity, transform' as const },
 })
 
 export default function Hero() {
@@ -29,21 +31,21 @@ export default function Hero() {
         }}
       />
 
-      {/* Aurora blobs */}
+      {/* Aurora blobs — hidden on mobile to avoid Safari animation budget issues */}
       <motion.div
         animate={{ scale: [1, 1.15, 1], opacity: [0.07, 0.12, 0.07] }}
         transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -top-32 -left-32 w-[700px] h-[700px] bg-[#3B82F6] rounded-full blur-[140px] pointer-events-none"
+        className="hidden sm:block absolute -top-32 -left-32 w-[700px] h-[700px] bg-[#3B82F6] rounded-full blur-[140px] pointer-events-none"
       />
       <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.04, 0.07, 0.04] }}
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        className="absolute top-1/2 -right-48 w-[600px] h-[600px] bg-[#8B5CF6] rounded-full blur-[160px] pointer-events-none"
+        className="hidden sm:block absolute top-1/2 -right-48 w-[600px] h-[600px] bg-[#8B5CF6] rounded-full blur-[160px] pointer-events-none"
       />
       <motion.div
         animate={{ scale: [1, 1.1, 1], opacity: [0.03, 0.06, 0.03] }}
         transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
-        className="absolute bottom-0 left-1/3 w-[500px] h-[400px] bg-[#06B6D4] rounded-full blur-[120px] pointer-events-none"
+        className="hidden sm:block absolute bottom-0 left-1/3 w-[500px] h-[400px] bg-[#06B6D4] rounded-full blur-[120px] pointer-events-none"
       />
 
       <div className="relative max-w-5xl mx-auto w-full pt-24 pb-16">
@@ -101,11 +103,14 @@ export default function Hero() {
             {t(content.hero.cta2)}
           </a>
           <a
-            href="/cv-enrique-alanis.pdf"
-            download
+            href={t({ en: '/cv-en.html', es: '/cv-es.html' })}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track('cv_download')}
             className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#27272A] hover:border-[#3F3F46] hover:bg-[#18181B] text-[#A1A1AA] hover:text-[#FAFAFA] text-sm font-medium rounded-lg transition-all"
           >
-            ↓ {t({ en: 'Download CV', es: 'Descargar CV' })}
+            <FileDown size={14} />
+            {t({ en: 'View CV', es: 'Ver CV' })}
           </a>
         </motion.div>
 

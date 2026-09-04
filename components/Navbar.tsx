@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { track } from '@vercel/analytics'
 import { useLang } from '@/contexts/LanguageContext'
 import { content } from '@/lib/content'
 
@@ -71,8 +72,10 @@ export default function Navbar() {
             </div>
 
             <a
-              href="/cv-enrique-alanis.pdf"
-              download
+              href={lang === 'es' ? '/cv-es.html' : '/cv-en.html'}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => track('cv_download')}
               className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#27272A] hover:border-[#3B82F6]/50 hover:bg-[#18181B] text-xs text-[#A1A1AA] hover:text-[#FAFAFA] rounded-md transition-all font-medium"
             >
               ↓ CV

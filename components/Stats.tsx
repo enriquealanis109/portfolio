@@ -6,7 +6,7 @@ import { useLang } from '@/contexts/LanguageContext'
 
 const stats = [
   {
-    value: 4,
+    value: 5,
     suffix: '',
     label: { en: 'Products shipped', es: 'Productos entregados' },
     detail: { en: 'From idea to production', es: 'De idea a producción' },
@@ -24,7 +24,7 @@ const stats = [
     detail: { en: 'Real revenue generated', es: 'Ingresos reales generados' },
   },
   {
-    value: 3,
+    value: 4,
     suffix: '',
     label: { en: 'Live deployments', es: 'Deploys en producción' },
     detail: { en: 'Running right now', es: 'Corriendo ahora mismo' },

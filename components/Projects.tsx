@@ -1,8 +1,10 @@
 'use client'
 
+import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
+import { track } from '@vercel/analytics'
 import { useLang } from '@/contexts/LanguageContext'
 import { content } from '@/lib/content'
 import { projects } from '@/lib/projects'
@@ -40,20 +42,21 @@ export default function Projects() {
           {projects.map((project, i) => {
             const badge = statusConfig[project.status]
             return (
-              <motion.a
+              <motion.div
                 key={project.id}
-                href={project.url}
-                target="_blank"
-                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 whileHover={{ y: -4 }}
-                className="group flex flex-col border border-[#27272A] rounded-2xl overflow-hidden hover:border-[#3F3F46] transition-all bg-[#0d0d0f] cursor-pointer"
+                className="group flex flex-col border border-[#27272A] rounded-2xl overflow-hidden hover:border-[#3F3F46] transition-all bg-[#0d0d0f]"
               >
-                {/* Logo area */}
-                <div
+                {/* Logo area — clickable to project */}
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => track('project_click', { project: project.id })}
                   style={{
                     position: 'relative',
                     width: '100%',
@@ -87,7 +90,7 @@ export default function Projects() {
                       className="group-hover:scale-110"
                     />
                   </div>
-                </div>
+                </a>
 
                 {/* Card content */}
                 <div className="p-5 flex flex-col flex-1">
@@ -103,10 +106,20 @@ export default function Projects() {
                         {t(c[project.status as keyof typeof c] as { en: string; es: string })}
                       </span>
                     </div>
-                    <ArrowUpRight
-                      size={14}
-                      className="text-[#3F3F46] group-hover:text-[#3B82F6] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 mt-0.5"
-                    />
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => track('project_click', { project: project.id })}
+                      className="shrink-0 mt-0.5"
+                      tabIndex={-1}
+                      aria-hidden
+                    >
+                      <ArrowUpRight
+                        size={14}
+                        className="text-[#3F3F46] group-hover:text-[#3B82F6] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                      />
+                    </a>
                   </div>
 
                   <p className="text-xs text-[#71717A] mb-3">{t(project.tagline)}</p>
@@ -115,7 +128,7 @@ export default function Projects() {
                     {t(project.description)}
                   </p>
 
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1.5 mb-4">
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
@@ -125,8 +138,20 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
+
+                  {/* Bottom row */}
+                  {project.caseStudySlug && (
+                    <div className="border-t border-[#27272A] pt-3 flex items-center justify-end">
+                      <Link
+                        href={`/case-studies/${project.caseStudySlug}`}
+                        className="text-[11px] font-medium text-[#3B82F6] hover:text-[#60A5FA] transition-colors"
+                      >
+                        Read case study →
+                      </Link>
+                    </div>
+                  )}
                 </div>
-              </motion.a>
+              </motion.div>
             )
           })}
         </div>

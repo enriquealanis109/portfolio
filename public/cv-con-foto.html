@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Enrique Alanis Saucedo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    html, body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #e0e0e0;
+      color: #111;
+      font-size: 10pt;
+      line-height: 1.5;
+    }
+
+    .page {
+      width: 794px;
+      min-height: 1123px;
+      margin: 20px auto;
+      padding: 60px 68px 72px 68px;
+      background: #fff;
+      position: relative;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    }
+
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1.5px solid #111;
+      padding-bottom: 14px;
+      margin-bottom: 22px;
+      gap: 20px;
+    }
+
+    .header-left { flex: 1; }
+
+    .header-name {
+      font-size: 22pt;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      margin-bottom: 3px;
+    }
+
+    .header-title {
+      font-size: 9.5pt;
+      color: #555;
+      font-weight: 400;
+    }
+
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .photo {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      object-position: center 20%;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+
+    .contact {
+      text-align: right;
+      font-size: 8.5pt;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    /* SECTIONS */
+    .section { margin-bottom: 18px; }
+
+    .section-title {
+      font-size: 7pt;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #888;
+      border-bottom: 1px solid #e5e5e5;
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+    }
+
+    /* SUMMARY */
+    .summary-text {
+      font-size: 9.5pt;
+      color: #333;
+      line-height: 1.65;
+    }
+
+    /* EXPERIENCE */
+    .job { margin-bottom: 14px; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+
+    .job-title {
+      font-size: 10pt;
+      font-weight: 600;
+    }
+
+    .job-date {
+      font-size: 8.5pt;
+      color: #666;
+      white-space: nowrap;
+    }
+
+    .job-subtitle {
+      font-size: 8.5pt;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    .job-bullets { padding-left: 0; list-style: none; }
+
+    .job-bullets li {
+      font-size: 9pt;
+      color: #333;
+      padding-left: 12px;
+      position: relative;
+      margin-bottom: 3px;
+      line-height: 1.55;
+    }
+
+    .job-bullets li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: #888;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    .tag {
+      font-size: 7.5pt;
+      background: #f5f5f5;
+      border: 1px solid #e0e0e0;
+      border-radius: 3px;
+      padding: 1px 6px;
+      color: #444;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 6.5pt;
+      font-weight: 600;
+      background: #111;
+      color: #fff;
+      border-radius: 3px;
+      padding: 1px 5px;
+      margin-left: 6px;
+      letter-spacing: 0.5px;
+      vertical-align: middle;
+    }
+
+    /* PROJECTS GRID */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .project-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 6px;
+      padding: 10px 12px;
+    }
+
+    .project-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .project-name {
+      font-size: 9.5pt;
+      font-weight: 600;
+    }
+
+    .project-url {
+      font-size: 7.5pt;
+      color: #888;
+    }
+
+    .project-badge {
+      font-size: 6.5pt;
+      font-weight: 600;
+      border-radius: 20px;
+      padding: 1px 7px;
+      border: 1px solid;
+    }
+
+    .badge-live { color: #16a34a; border-color: #16a34a; background: #f0fdf4; }
+    .badge-dev  { color: #d97706; border-color: #d97706; background: #fffbeb; }
+    .badge-own  { color: #2563eb; border-color: #2563eb; background: #eff6ff; }
+
+    .project-desc {
+      font-size: 8.5pt;
+      color: #444;
+      line-height: 1.55;
+      margin-bottom: 6px;
+    }
+
+    .project-stack {
+      font-size: 7.5pt;
+      color: #888;
+    }
+
+    /* SKILLS */
+    .skills-table { width: 100%; border-collapse: collapse; }
+
+    .skills-table tr td {
+      padding: 3px 0;
+      font-size: 9pt;
+      vertical-align: top;
+    }
+
+    .skills-table tr td:first-child {
+      font-weight: 500;
+      color: #555;
+      width: 110px;
+      font-size: 8.5pt;
+    }
+
+    .skills-table tr td:last-child { color: #222; }
+
+    /* EDUCATION */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .edu-left .edu-degree { font-size: 10pt; font-weight: 600; }
+    .edu-left .edu-school { font-size: 8.5pt; color: #555; }
+    .edu-date { font-size: 8.5pt; color: #666; white-space: nowrap; }
+
+    /* SIGNATURE BOTTOM */
+    .signature-bottom {
+      margin-top: 40px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .signature-line {
+      text-align: center;
+    }
+
+    .signature-line .line {
+      width: 200px;
+      border-bottom: 1px solid #111;
+      margin-bottom: 4px;
+    }
+
+    .signature-line p {
+      font-size: 8pt;
+      color: #555;
+    }
+
+
+    /* PAGE 2 */
+    .page-break { page-break-before: always; }
+
+    @media print {
+      html, body { background: #fff; }
+      .page {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0;
+        padding: 14mm 18mm 18mm 18mm;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page">
+
+  <header class="header">
+    <div class="header-left">
+      <div class="header-name">Enrique Alanis Saucedo</div>
+      <div class="header-title">Full Stack Engineer · Product Builder</div>
+    </div>
+    <div class="header-right">
+      <img src="./foto.jpeg" alt="Foto" class="photo" />
+      <div class="contact">
+        enriquealanis109@gmail.com<br>
+        844 542 8446<br>
+        linkedin.com/in/enrique-alanis<br>
+        Saltillo, Coahuila · Remote-ready
+      </div>
+    </div>
+  </header>
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <div class="section-title">Summary</div>
+    <p class="summary-text">
+      Ingeniero en Sistemas Computacionales y fundador de Flowra, agencia de desarrollo web. Construyo
+      plataformas web completas — desde la interfaz hasta la base de datos — para clientes reales, con
+      productos vivos en producción y usuarios activos. Experiencia en sistemas multi-rol, paneles admin,
+      integraciones con AI y automatización. Busco incorporarme a un equipo de producto donde pueda aportar
+      criterio técnico, autonomía y capacidad de entrega.
+    </p>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Experience</div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Flowra — Agencia Digital <span class="badge">FOUNDER</span></div>
+        <div class="job-date">2026 – Presente</div>
+      </div>
+      <div class="job-subtitle">Full Stack Engineer · Saltillo, México · Remote-ready</div>
+      <ul class="job-bullets">
+        <li>Fundé Flowra como agencia de desarrollo web y automatización para clientes en México.</li>
+        <li>Automatización de workflows de negocio con <strong>n8n</strong> e integraciones con <strong>Claude AI API</strong> para clientes.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Next.js</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Tailwind CSS</span>
+        <span class="tag">n8n</span>
+        <span class="tag">Anthropic AI</span>
+        <span class="tag">Vercel</span>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Freelance Web Developer</div>
+        <div class="job-date">2024 – 2026</div>
+      </div>
+      <div class="job-subtitle">Independiente · Saltillo, México</div>
+      <ul class="job-bullets">
+        <li><strong>Panteras Saltillo</strong> — Sistema de gestión deportiva multi-rol (admin, entrenador, coordinador) con autenticación, pase de lista, reportes PDF, analytics y PWA. <em>10+ usuarios activos en producción.</em></li>
+        <li><strong>Stage 11 Danceground</strong> — Plataforma completa para academia de baile: landing pública + panel admin con clases, eventos, galería y métricas. Cliente real, proyecto cobrado. Vivo en <em>stage11danceground.com</em>.</li>
+        <li><strong>Tornea</strong> — SaaS propio para torneos deportivos con multi-rol (organizador, entrenador, árbitro) y autenticación con RLS. Desplegado en <em>tornea-app.vercel.app</em>.</li>
+        <li>Integré <strong>Claude AI API</strong> como chatbot de cotización en landing de cliente — respuestas en tiempo real.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">Next.js 14</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">Tailwind CSS</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">Framer Motion</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Vercel</span>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Soporte Informático Estatal</div>
+        <div class="job-date">Oct 2023 – 2024</div>
+      </div>
+      <div class="job-subtitle">INEGI — Instituto Nacional de Estadística y Geografía · Saltillo, Coahuila</div>
+      <ul class="job-bullets">
+        <li>Administración de infraestructura tecnológica y seguridad informática para oficinas operativas estatales.</li>
+        <li>Implementé sistema en Google Sheets para gestión de inventario de equipos y consumibles — centralizando el control de recursos y reduciendo tiempos de seguimiento.</li>
+        <li>Mantenimiento preventivo, bitácora de servicios y gestión de requerimientos con seguimiento hasta cierre.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Analista — Help Desk L1/L2</div>
+        <div class="job-date">Jun 2023 – Oct 2023</div>
+      </div>
+      <div class="job-subtitle">Omnifon · TXM — Mesa de ayuda GIS (Grupo Industrial Saltillo)</div>
+      <ul class="job-bullets">
+        <li>Soporte técnico nivel 1 y 2 para toda la organización GIS. Administración de Active Directory y políticas de seguridad.</li>
+        <li>Identificación de problemas recurrentes y documentación de soluciones de largo plazo.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <div class="job-title">Ingeniero de Soporte (Prácticas)</div>
+        <div class="job-date">Dic 2022 – Jun 2023</div>
+      </div>
+      <div class="job-subtitle">Service Desk Plus · Saltillo</div>
+      <ul class="job-bullets">
+        <li>Soporte en sitio para instituciones gubernamentales y empresas privadas. Implementación y administración de soluciones Microsoft: Active Directory, Exchange, SharePoint, SQL Server.</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="signature-bottom">
+    <div class="signature-line">
+      <div class="line"></div>
+      <p>Enrique Alanis Saucedo</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- PAGE 2 -->
+<div class="page page-break">
+
+  <!-- FEATURED PROJECTS -->
+  <div class="section">
+    <div class="section-title">Featured Projects</div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="project-name">Panteras Saltillo</span>
+          <span class="project-badge badge-live">LIVE</span>
+        </div>
+        <div class="project-url">panteras-app.vercel.app</div>
+        <p class="project-desc">Plataforma de gestión deportiva multi-rol con auth, pase de lista, reportes PDF, analytics y PWA. 10+ usuarios activos en producción.</p>
+        <div class="project-stack">Next.js · TypeScript · Supabase · Tailwind · PWA</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="project-name">Stage 11 Danceground</span>
+          <span class="project-badge badge-live">LIVE</span>
+        </div>
+        <div class="project-url">stage11danceground.com</div>
+        <p class="project-desc">Landing + panel admin completo para academia de baile. Gestión de clases, eventos, galería y métricas. Proyecto de cliente cobrado.</p>
+        <div class="project-stack">Next.js · TypeScript · Supabase · Tailwind</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="project-name">Tornea</span>
+          <span class="project-badge badge-dev">IN DEV</span>
+        </div>
+        <div class="project-url">tornea-app.vercel.app</div>
+        <p class="project-desc">SaaS propio para torneos deportivos. Multi-rol: organizador, entrenador, árbitro. Sistema de jugadores, validación y roster PDF.</p>
+        <div class="project-stack">Next.js · Supabase · Framer Motion · Tailwind</div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="project-name">Flowra — Agencia Digital</span>
+          <span class="project-badge badge-own">OWN BRAND</span>
+        </div>
+        <div class="project-url">flowra.mx</div>
+        <p class="project-desc">Mi agencia de desarrollo web y automatización. Landing, identidad de marca y servicios de producto digital para clientes en México.</p>
+        <div class="project-stack">Next.js · Tailwind · n8n · Framer Motion</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TECHNICAL SKILLS -->
+  <div class="section">
+    <div class="section-title">Technical Skills</div>
+    <table class="skills-table">
+      <tr><td>Languages</td><td>TypeScript, JavaScript, SQL, C#, Python, HTML/CSS</td></tr>
+      <tr><td>Frameworks</td><td>Next.js, React, Angular, .NET</td></tr>
+      <tr><td>Styling</td><td>Tailwind CSS, Framer Motion, CSS Modules</td></tr>
+      <tr><td>Database</td><td>Supabase, PostgreSQL, SQL Server</td></tr>
+      <tr><td>Tools</td><td>Git, Vercel, n8n, Anthropic AI API, Figma</td></tr>
+      <tr><td>Infra / IT</td><td>Active Directory, Microsoft 365, Exchange, SharePoint</td></tr>
+    </table>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-title">Education</div>
+    <div class="edu-item">
+      <div class="edu-left">
+        <div class="edu-degree">Ingeniería en Sistemas Computacionales</div>
+        <div class="edu-school">Instituto Tecnológico de Saltillo</div>
+      </div>
+      <div class="edu-date">2017 – 2023</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-left">
+        <div class="edu-degree">Inglés B1 — Marco Común Europeo</div>
+        <div class="edu-school">Lenguas Extranjeras ITS</div>
+      </div>
+      <div class="edu-date">2020 – 2022</div>
+    </div>
+  </div>
+
+
+  <div class="signature-bottom">
+    <div class="signature-line">
+      <div class="line"></div>
+      <p>Enrique Alanis Saucedo</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
