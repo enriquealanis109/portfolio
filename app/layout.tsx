@@ -8,21 +8,21 @@ const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://enrique-alanis.vercel.app'),
+  metadataBase: new URL('https://portfolio-enrique-alanis-projects.vercel.app'),
   title: 'Enrique Alanis — Full Stack Engineer',
   description: 'Systems Engineer building complete web products. Next.js, TypeScript, Supabase. Real clients. Real deployments.',
   openGraph: {
     title: 'Enrique Alanis — Full Stack Engineer',
     description: 'Systems Engineer building complete web products. Next.js · TypeScript · Supabase',
     type: 'website',
-    url: 'https://enrique-alanis.vercel.app',
-    images: [{ url: 'https://enrique-alanis.vercel.app/opengraph-image', width: 1200, height: 630 }],
+    url: 'https://portfolio-enrique-alanis-projects.vercel.app',
+    images: [{ url: 'https://portfolio-enrique-alanis-projects.vercel.app/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Enrique Alanis — Full Stack Engineer',
     description: 'Systems Engineer building complete web products.',
-    images: ['https://enrique-alanis.vercel.app/opengraph-image'],
+    images: ['https://portfolio-enrique-alanis-projects.vercel.app/opengraph-image'],
   },
 }
 
